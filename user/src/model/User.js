@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import * as bcrypt from 'bcrypt'
+import validator from 'validator'
 
 const Schema = mongoose.Schema
 
@@ -20,10 +21,6 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true
-    },
-    date: {
-        type: Date,
-        default: Date.now
     }
 })
 
@@ -37,5 +34,4 @@ UserSchema.statics.comparePassword= async(plainText, hash) =>{
     return await bcrypt.compare(plainText, hash)
 }
 
-const User = mongoose.model('User', UserSchema)
-export default User 
+export const User = mongoose.model('User', UserSchema)

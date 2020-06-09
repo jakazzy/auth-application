@@ -10,7 +10,7 @@ import passportLocal from './config/passport-local'
 const app = express()
 const PORT = process.env.PORT || 8080
 
-app.use(bodyParser.urlencoded({ extended: false}))
+app.use(bodyParser())
 app.use('/api/v0', Router.v0Router(express))
 app.use(cors())
 // middleware

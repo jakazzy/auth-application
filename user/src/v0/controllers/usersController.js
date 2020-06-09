@@ -1,4 +1,4 @@
-import User from '../../model'
+import { User } from '../../model'
 import passport from 'passport'
 
 export default {
@@ -15,6 +15,7 @@ export default {
      try {
          let errors = []
          const { name, email, password } = req.body
+         console.log(req.body, '*******************');
          
         //  required fields
         if(!name || !email || !password){
@@ -22,7 +23,7 @@ export default {
         }
 
         // check password length
-        if(password.length < 8){
+        if(password && password.length < 8){
             errors.push({ message: "Password should not be less than 8 characters"})
         }
 
@@ -45,7 +46,8 @@ export default {
        const user = await newUser.save()
         res.status(200).send({message:'User successfully registered', user })
      } catch (error) {
-         res.status(400).send(error)
+         console.log(error, '-------------')
+        return res.status(400).send(error)
      }
      
     },
