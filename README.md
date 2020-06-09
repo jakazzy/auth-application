@@ -21,10 +21,10 @@ For development, you will only need Node.js and a node global package, installed
 
 
 ## Running the project
-visiting the URL below in the browser
- $ localhost:8084/  
+    visiting the URL below in the browser <br>
+    $ localhost:8084/  
  
- should display - 
-$ Welcome the the auth application
+    should display - <br>
+    $ Welcome the the auth application
    
 
