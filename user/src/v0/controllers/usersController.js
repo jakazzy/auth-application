@@ -60,5 +60,10 @@ export default {
 
     show: (req, res)=>{
         res.status(200).send({message: 'Welcome to the dashboard'})
+    },
+
+    logout: (req, res)=>{
+        req.logout()
+        res.redirect('/api/v0/login')
     }
 }
