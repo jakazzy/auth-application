@@ -1,4 +1,5 @@
 import User from '../../model'
+import passport from 'passport'
 
 export default {
     index: async(req,res)=>{ 
@@ -49,7 +50,15 @@ export default {
      
     },
 
-    login: async(req, res)=>{
-        res.send("i see you login")
+    login: async(req, res, next)=>{
+        passport.authenticate('local', {
+            successRedirect: 'api/v0/dashboard',
+            failureRedirect: 'api/v0/login',
+            failureFlash: true
+        })(req, res, next)
+    },
+
+    show: (req, res)=>{
+        res.status(200).send({message: 'Welcome to the dashboard'})
     }
 }

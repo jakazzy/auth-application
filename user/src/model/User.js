@@ -27,10 +27,14 @@ const UserSchema = new Schema({
     }
 })
 
-UserSchema.statics.generatePassword= async function(plainText){
+UserSchema.statics.generatePassword= async(plainText) =>{
     const saltRounds = 10
     const salt = await bcrypt.genSalt(saltRounds)
     return await bcrypt.hash(plainText, salt)
+}
+
+UserSchema.statics.comparePassword= async(plainText, hash) =>{
+    return await bcrypt.compare(plainText, hash)
 }
 
 const User = mongoose.model('User', UserSchema)
