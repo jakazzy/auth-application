@@ -10,12 +10,13 @@ import passportLocal from './config/passport-local'
 const app = express()
 const PORT = process.env.PORT || 8080
 
-app.use(bodyParser())
-app.use('/api/v0', Router.v0Router(express))
-app.use(cors())
 // middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(bodyParser())
+app.use('/api/v0', Router.v0Router(express))
+app.use(cors())
 
 // passport config
 passportLocal(passport)

@@ -15,8 +15,6 @@ export default {
      try {
          let errors = []
          const { name, email, password } = req.body
-         console.log(req.body, '*******************');
-         
         //  required fields
         if(!name || !email || !password){
             errors.push({ message: 'Please fill in all required fields'})
@@ -46,21 +44,25 @@ export default {
        const user = await newUser.save()
         res.status(200).send({message:'User successfully registered', user })
      } catch (error) {
-         console.log(error, '-------------')
         return res.status(400).send(error)
      }
      
     },
 
     login: async(req, res, next)=>{
-        passport.authenticate('local', {
-            successRedirect: 'api/v0/dashboard',
-            failureRedirect: 'api/v0/login',
-            failureFlash: true
-        })(req, res, next)
+        try {
+            passport.authenticate('local', {
+                successRedirect: '/dashboard',
+                failureRedirect: '/login',
+                failureFlash: true
+            })(req, res, next)
+        } catch (error) {
+           return res.status(400).send({message: error})
+        }
+       
     },
 
-    show: (req, res)=>{
+    show: (req, res)=>{  
         res.status(200).send({message: 'Welcome to the dashboard'})
     },
 

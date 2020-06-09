@@ -1,6 +1,6 @@
 import passportLocal from 'passport-local'
 import mongoose from 'mongoose'
-import User from '../model'
+import { User } from '../model'
 const LocalStrategy = passportLocal.Strategy
 
 export default (passport)=>{
@@ -14,13 +14,14 @@ passport.use(
             }
             // match password
             const match = await User.comparePassword(password, user.password)
+
             if(match){
                 return done(null, user)
             } else{
                 return done(null, false, {message: 'Password incorrect'})
             }
         } catch (error) {
-            return res.status().send({message: error})
+            return res.status(400).send({message: error})
         }    
     })
     )
