@@ -12,6 +12,19 @@ export default {
 
     create: async(req, res)=>{
      try {
+         let errors = []
+         const { name, email, password } = req.body
+         
+        //  required fields
+        if(!name || !email || !password){
+            errors.push({ message: 'Please fill in all required fields'})
+        }
+
+        // check password length
+        if(password.length < 8){
+            errors.push({ message: "Password should not be less than 8 characters"})
+        }
+
         res.send('Hi this is working')
      } catch (error) {
          res.status(400).send(error)
