@@ -2,6 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import passport from 'passport'
+import cors from 'cors'
 
 import Router from './v0/routers'
 import passportLocal from './config/passport-local'
@@ -11,7 +12,7 @@ const PORT = process.env.PORT || 8080
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use('/api/v0', Router.v0Router(express))
-
+app.use(cors())
 // middleware
 app.use(passport.initialize());
 app.use(passport.session());

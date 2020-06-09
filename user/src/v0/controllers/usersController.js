@@ -65,5 +65,13 @@ export default {
     logout: (req, res)=>{
         req.logout()
         res.redirect('/api/v0/login')
+    },
+
+    resetPassword: (req, res)=>{
+        res.send('reset password')
+    },
+
+    forgotPassword: (req, res)=>{
+        res.send('forgot password')
     }
 }
