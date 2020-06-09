@@ -4,10 +4,8 @@ export default (express)=>{
 const router = express.Router()
 
 // authentication
-router.get('/login', v0.usersController.login)
-
-router.get('/signup', v0.usersController.create)
-
+router.post('/signup', v0.usersController.create)
+router.post('/login', v0.usersController.login)
 // 
 router.get('/users',  v0.usersController.index )
     return router
