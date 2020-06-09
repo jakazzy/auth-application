@@ -20,8 +20,8 @@ mongoose
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
-app.get('hello', (req, res)=>{
-    res.send('hello how are you?')
+app.get('/', (req, res)=>{
+    res.send('welcome to the auth application')
 })
 
 app.listen(PORT, ()=>{

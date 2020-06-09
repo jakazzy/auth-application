@@ -1,4 +1,4 @@
-# Contributing to avengers-stage-2 project
+# Contributing to auth application
 :+1::tada: [How Can I Contribute?](#how-can-i-contribute)
 <br>This section guides you through contributing to the Avengers-stage-2 project. 
 <br>Following these guidelines helps maintainers and the contibuters align  together to make the process seamless. :computer: :computer:.
