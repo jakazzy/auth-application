@@ -19,6 +19,7 @@ For development, you will only need Node.js and a node global package, installed
     $ cd PROJECT_TITLE/user
     $ docker-compose up
 
+### For steps entire process on setting up, check user/contribution.md
 
 ## Running the project
     visiting the URL below in the browser <br>
