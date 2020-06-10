@@ -14,11 +14,13 @@
     * Sync your local copy with the upstream copy and update the origin as well.
         * $ git pull upstream master && git push origin master
     * Create a new branch to work on! Branch from develop if it exists( else from master). It is recommended for every new feature you work on make a new branch and work from there.
+    
         * git checkout -b {issue/story type}/{2-3 word summary} eg. feature/add-authentication or bug/fix-user-duplication
     * Set up project with all dependencies
      * If the project has tests run them!
     * Implement/fix your feature, comment your code.
     * Follow the code style of the project, including indentation.
+
     * After feature implementation, run tests again! (if it exists in the project)
     * Write or adapt tests as needed.
     * To keep to update with the main repo, be sure to pull upstream changes into your local repository.
