@@ -62,20 +62,47 @@ export default {
        
     },
 
-    show: (req, res)=>{  
+    show: async(req, res)=>{  
         res.status(200).send({message: 'Welcome to the dashboard'})
     },
 
-    logout: (req, res)=>{
+    logout: async(req, res)=>{
         req.logout()
         res.redirect('/api/v0/login')
     },
 
-    resetPassword: (req, res)=>{
-        res.send('reset password')
-    },
+    sendResetPasswordEmail: async(req, res)=>{
+        try {
+            const { email } = req.body
 
-    forgotPassword: (req, res)=>{
-        res.send('forgot password')
+            if(!email){
+                return res.status(422).send({
+                    message: 'email cannot be empty'
+                })
+            }
+
+            const user = await User.findOne({ email })
+            if (!user){
+                return res.status(404).send({ message: 'user does not exist'})
+            }
+
+            const token = await User.generateResetPasswordToken(user.password, user._id)
+
+            await User.resetPasswordMessage(
+                user._id, email, user, token
+            )
+        
+            res.status(200).send({
+                message: 'Follow instructions to change password in email',
+              })
+       
+        } catch (error) {
+            console.log(error, '-----------------------------------');
+            
+            return res.status(400).send({message: error.message})
+        }
+    },
+    resetNewPassword: async(req, res)=>{
+        res.status(200).send("i see you")
     }
 }
