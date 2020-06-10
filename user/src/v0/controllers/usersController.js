@@ -1,12 +1,15 @@
 import { User } from '../../model'
 import passport from 'passport'
+import * as jwt from 'jsonwebtoken'
 
 export default {
     index: async(req,res)=>{ 
         try {
-            const user = await User.find()
-            res.status(200).send({message: items})
+            const users = await User.find()
+            res.status(200).send({ users })
         } catch (error) {
+            console.log(error, 'iiiiiiiiiiiiiiiiiiiii');
+            
             res.status(400).send({ message: error})
         }
     },
@@ -42,7 +45,7 @@ export default {
         })
 
        const user = await newUser.save()
-        res.status(200).send({message:'User successfully registered', user })
+        res.status(201).send({message:'User successfully registered', user })
      } catch (error) {
         return res.status(400).send(error)
      }
@@ -63,10 +66,13 @@ export default {
     },
 
     show: async(req, res)=>{  
+        
         res.status(200).send({message: 'Welcome to the dashboard'})
     },
 
     logout: async(req, res)=>{
+        
+        
         req.logout()
         res.redirect('/api/v0/login')
     },
@@ -102,7 +108,53 @@ export default {
             return res.status(400).send({message: error.message})
         }
     },
+
     resetNewPassword: async(req, res)=>{
-        res.status(200).send("i see you")
+       try {
+        const { id, token } = req.params
+        const user = await User.findById(id)
+        const secret = `${user.password}-${user._id}`
+        const {payload } = jwt.verify(token, secret)
+       
+        
+        if (!req.body.password){ 
+          return res.status(422).send({message: 'password cannot be empty'})
+        }  
+        
+        if (id === payload.userId){
+          const hash = await User.generatePassword(req.body.password)
+          const newUser = new User({
+            _id: id,
+            name: user.name,
+            email: user.email,
+            password: hash})
+         
+          
+          await User.updateOne( { _id: id }, newUser)
+          return res.status(200).redirect('http://localhost:8084/api/v0/login')
+        }
+        return res.status(401).send({message: 'unauthorised'})
+           
+       } catch (error) {
+        res.status(400).send({message: error.message})
+       }
+    },
+
+    delete: async(req, res)=>{
+      try {
+        const user = await User.findById(req.params.id)
+          console.log(typeof req.params.id, user);
+          
+       await User.findOneAndDelete ({
+            _id: req.params.id
+        })
+        res.status(200).send({ message: 'User deleted successfully'})
+      } catch (error) {
+          res.status(400).send({ message: error.message})
+      }
+      
     }
 }
+
+
+

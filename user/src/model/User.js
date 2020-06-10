@@ -45,7 +45,7 @@ UserSchema.statics.generateResetPasswordToken = async(password, id) =>{
 }
 
 UserSchema.statics.resetPasswordMessage = async(id, email, user, token)=>{
-    const url = `http://localhost:8080/api/v1/reset/${id}/${token}`
+    const url = `http://localhost:8084/api/v0/reset/${id}/${token}`
 
     ejs.renderFile(
         __dirname + '/../mailtemplate/reset-instruction.ejs', 
