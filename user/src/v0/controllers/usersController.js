@@ -7,9 +7,7 @@ export default {
         try {
             const users = await User.find()
             res.status(200).send({ users })
-        } catch (error) {
-            console.log(error, 'iiiiiiiiiiiiiiiiiiiii');
-            
+        } catch (error) { 
             res.status(400).send({ message: error})
         }
     },
@@ -54,6 +52,11 @@ export default {
 
     login: async(req, res, next)=>{
         try {
+            const user = await User.findOne(googleId)
+            if(user && !user.password){
+                return res.status(400).send(
+                    { message: 'you created account with google, kinldy sign in with same'})
+            }
             passport.authenticate('local', {
                 successRedirect: '/dashboard',
                 failureRedirect: '/login',
@@ -103,8 +106,6 @@ export default {
               })
        
         } catch (error) {
-            console.log(error, '-----------------------------------');
-            
             return res.status(400).send({message: error.message})
         }
     },
@@ -143,9 +144,7 @@ export default {
     delete: async(req, res)=>{
       try {
         const user = await User.findById(req.params.id)
-          console.log(typeof req.params.id, user);
-          
-       await User.findOneAndDelete ({
+        await User.findOneAndDelete ({
             _id: req.params.id
         })
         res.status(200).send({ message: 'User deleted successfully'})
@@ -153,6 +152,25 @@ export default {
           res.status(400).send({ message: error.message})
       }
       
+    },
+
+    googleLogin: async(req, res, next)=> { 
+       try {
+        passport.authenticate('google', { scope: ['profile', 'email'] })(req, res, next)
+       } catch (error) {
+           return res.status(400).send({ message: error.message})
+       }
+    },
+
+    googleCallBack: async(req, res, next)=>{
+        try {
+            passport.authenticate('google', 
+            { failureRedirect: '/login' })(req, res, next),(req, res)=>{
+                // Successful authentication, redirect home.
+                res.redirect('/')}
+        } catch (error) {
+            return res.status(400).send({message: error.message})
+        }
     }
 }
 
