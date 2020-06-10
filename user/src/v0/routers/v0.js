@@ -16,5 +16,11 @@ router.delete('/users/:id', v0.usersController.delete )
 
 // logout user
 router.get('/logout', v0.usersController.logout)
+
+// Google authentication
+router.get('/auth/google', v0.usersController.googleLogin);
+
+router.get('/auth/google/callback', v0.usersController.googleCallBack);
+
     return router
 }

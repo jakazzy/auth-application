@@ -5,7 +5,9 @@ import passport from 'passport'
 import cors from 'cors'
 
 import Router from './v0/routers'
-import passportLocal from './config/passport-local'
+import auth from './config'
+// import passportLocal from './config/passport-local'
+// import passportGoogle from ''
 
 const app = express()
 const PORT = process.env.PORT || 8080
@@ -18,8 +20,9 @@ app.use(bodyParser())
 app.use('/api/v0', Router.v0Router(express))
 app.use(cors())
 
-// passport config
-passportLocal(passport)
+// passport config for local && google
+auth.passportLocal(passport)
+auth.passportGoogle(passport)
 
 // Connect to MongoDB
 mongoose
