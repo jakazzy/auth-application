@@ -2,6 +2,7 @@ import { User } from '../../model'
 import passport from 'passport'
 import * as jwt from 'jsonwebtoken'
 
+
 export default {
     index: async(req,res)=>{ 
         try {
@@ -15,6 +16,7 @@ export default {
     },
 
     create: async(req, res)=>{
+
      try {
          let errors = []
          const { name, email, password } = req.body
@@ -153,6 +155,7 @@ export default {
           res.status(400).send({ message: error.message})
       }
       
+
     }
 }
 
