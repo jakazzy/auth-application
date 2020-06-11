@@ -3,11 +3,12 @@ import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import passport from 'passport'
 import cors from 'cors'
+import swaggerUi from 'swagger-ui-express'
 
 import Router from './v0/routers'
 import auth from './config'
-// import passportLocal from './config/passport-local'
-// import passportGoogle from ''
+import * as swaggerDocument from '../docs/swagger.json'
+
 
 const app = express()
 const PORT = process.env.PORT || 8080
@@ -23,6 +24,9 @@ app.use(cors())
 // passport config for local && google
 auth.passportLocal(passport)
 auth.passportGoogle(passport)
+
+// documentation
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 // Connect to MongoDB
 mongoose
