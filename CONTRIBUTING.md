@@ -30,3 +30,10 @@
     * From your fork open a pull request in the correct branch. Target the project's develop branch(of the upstream repository) if there is one, else go for master!
 
 
+## CONTRIBUTORS && THEIR SLACK NAMES            
+* Marvellous Jide-Filani(Marvel)
+* Adwoa Asare (Grenalyn)
+* Dare Afolabi(DevDre)
+* Taiwo Adejare Emmanuel(jboy)
+* Festus samuel(Skiddo)
+* Idris Justice(Ijustice)

@@ -65,7 +65,7 @@ export default {
         } catch (error) {
            return res.status(400).send({message: error})
         }
-       
+    //    localhoost;8084/api/v0/dash
     },
 
     show: async(req, res)=>{  
