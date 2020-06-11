@@ -31,9 +31,9 @@
 
 
 ## CONTRIBUTORS && THEIR SLACK NAMES            
-* Marvellous Jide-Filani(Marvel)
-* Adwoa Asare (Grenalyn)
-* Dare Afolabi(DevDre)
-* Taiwo Adejare Emmanuel(jboy)
-* Festus samuel(Skiddo)
-* Idris Justice(Ijustice)
+* Marvellous Jide-Filani  (Marvel)
+* Adwoa Asare  (Grenalyn)
+* Dare Afolabi  (DevDre)
+* Taiwo Adejare Emmanuel  (jboy)
+* Festus samuel  (Skiddo)
+* Idris Justice  (Ijustice)
