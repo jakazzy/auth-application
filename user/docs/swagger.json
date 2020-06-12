@@ -3,7 +3,7 @@
     "info":{
         "version": "1.0.0",
         "title": "Auth App",
-        "description": " A simple application for authentication",
+        "description": " An API that allows authentication of users",
         "contact": {
             "name": "Team-node-2",
             "email": "nodeteam@gmail.com"
@@ -14,6 +14,49 @@
         }
     },
     "servers":[{
-        "url": "http://localhost:8084/api/v1"
-    }]
+        "url": "http://localhost:8084/api/v1",
+        "description": "This is the dev server for the API"
+    }],
+    "paths": {
+        "/users": {
+            "get": {
+                "description": "obtain information about users from the database",
+                "responses": {
+                    "200": {
+                        "description": "Successful pull of users info",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "_id": {
+                                              "type": "string",
+                                              "example": "iu7afh47aux9gkjjhkjuysta4"
+                                            },
+                                            "name": {
+                                              "type": "string",
+                                              "example": "Mercy Afobite"
+                                            },
+                                            "email": {
+                                              "type": "string",
+                                              "example": "regal@gmail.com"
+                                            },
+                                            "password": {
+                                              "type": "string",
+                                              "example": "ahjd87d5673b"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
+
+

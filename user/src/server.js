@@ -41,6 +41,7 @@ app.get('/', (req, res)=>{
     res.send('welcome to the auth application')
 })
 
+// server is running on PORT 8084 on local machine but 8080 on container
 app.listen(PORT, ()=>{
     console.log(`server running at http://localhost:${PORT}`)
     console.log(`press CTRL +C to stop server`)   
