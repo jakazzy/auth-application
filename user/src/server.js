@@ -5,7 +5,7 @@ import passport from 'passport'
 import cors from 'cors'
 import swaggerUi from 'swagger-ui-express'
 
-import Router from './v0/routers'
+import Router from './v1/routers'
 import auth from './config'
 import * as swaggerDocument from '../docs/swagger.json'
 
@@ -18,7 +18,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(bodyParser())
-app.use('/api/v0', Router.v0Router(express))
+app.use('/api/v1', Router.v1Router(express))
 app.use(cors())
 
 // passport config for local && google

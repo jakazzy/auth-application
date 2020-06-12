@@ -10,7 +10,7 @@ export default (passport)=>{
 const options = {
     clientID: con.google_client_id,
     clientSecret: con.google_client_secret,
-    callbackURL: "http://localhost:8084/api/v0/auth/google/callback"
+    callbackURL: "http://localhost:8084/api/v1/auth/google/callback"
   }
 
 const verifyCallback = async(accessToken, refreshToken, profile, done)=>{
