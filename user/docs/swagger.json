@@ -53,6 +53,43 @@
                         }
                     }
                 }
+            },
+            "post":{
+                "description": "Create a new user in the database",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "_id": {
+                                      "type": "string",
+                                      "example": "iu7afh47aux9gkjjhkjuysta4"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "Mercy Afobite"
+                                    },
+                                    "email": {
+                                      "type": "string",
+                                      "example": "regal@gmail.com"
+                                    },
+                                    "password": {
+                                      "type": "string",
+                                      "example": "ahjd87d5673b"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully created user",
+                        "content": {}
+                    }
+                }
             }
         }
     }
