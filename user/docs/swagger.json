@@ -86,8 +86,102 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Successfully created user",
-                        "content": {}
+                        "description": "Successfully created a new user"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "description": "login an existing user in",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type":"object",
+                                "properties": {
+                                    "email": {
+                                      "type": "string",
+                                      "example": "regal@gmail.com"
+                                    },
+                                    "password": {
+                                      "type": "string",
+                                      "example": "ahjd87d5673b"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully logged user in"
+                    }
+                }
+            }
+        },
+        "/signup": {
+            "post": {
+                "description": "create a new user",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type":"object",
+                                "properties": {
+                                    "_id": {
+                                      "type": "string",
+                                      "example": "iu7afh47aux9gkjjhkjuysta4"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "Mercy Afobite"
+                                    },
+                                    "email": {
+                                      "type": "string",
+                                      "example": "regal@gmail.com"
+                                    },
+                                    "password": {
+                                      "type": "string",
+                                      "example": "ahjd87d5673b"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully created a user in"
+                    }
+                }
+            }
+        },
+        "/reset": {
+            "post": {
+                "description": "reset password for an existing user",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type":"object",
+                                "properties": {
+                                    
+                                    "email": {
+                                      "type": "string",
+                                      "example": "regal@gmail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Follow instructions to change password in email"
                     }
                 }
             }
