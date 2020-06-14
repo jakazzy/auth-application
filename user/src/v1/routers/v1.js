@@ -10,7 +10,7 @@ router.post('/login', v1.usersController.login)
 // 
 router.get('/users',  v1.usersController.index )
 router.get('/dashboard',  v1.usersController.show)
-router.post('/reset', v1.usersController.sendResetPasswordEmail)
+router.put('/reset', v1.usersController.sendResetPasswordEmail)
 router.put('/reset/:id/:token', v1.usersController.resetNewPassword)
 router.delete('/users/:id', v1.usersController.delete )
 
@@ -21,6 +21,6 @@ router.get('/logout', v1.usersController.logout)
 router.get('/auth/google', v1.usersController.googleLogin);
 
 router.get('/auth/google/callback', v1.usersController.googleCallBack);
-
+router.get('/', v1.usersController.welcome)
     return router
 }

@@ -26,7 +26,7 @@ auth.passportLocal(passport)
 auth.passportGoogle(passport)
 
 // documentation
-app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 // Connect to MongoDB
 mongoose
@@ -37,9 +37,7 @@ mongoose
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
-app.get('/', (req, res)=>{
-    res.send('welcome to the auth application')
-})
+
 
 // server is running on PORT 8084 on local machine but 8080 on container
 app.listen(PORT, ()=>{

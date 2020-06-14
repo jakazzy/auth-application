@@ -171,6 +171,9 @@ export default {
         } catch (error) {
             return res.status(400).send({message: error.message})
         }
+    },
+    welcome: (req, res)=>{
+        res.send('welcome to the auth application')
     }
 }
 
