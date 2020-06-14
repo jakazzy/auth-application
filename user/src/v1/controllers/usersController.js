@@ -65,7 +65,7 @@ export default {
         } catch (error) {
            return res.status(400).send({message: error})
         }
-    //    localhoost;8084/api/v0/dash
+    //    localhoost;8084/api/v1/dash
     },
 
     show: async(req, res)=>{  
@@ -77,7 +77,7 @@ export default {
         
         
         req.logout()
-        res.redirect('/api/v0/login')
+        res.redirect('/api/v1/login')
     },
 
     sendResetPasswordEmail: async(req, res)=>{
@@ -132,7 +132,7 @@ export default {
          
           
           await User.updateOne( { _id: id }, newUser)
-          return res.status(200).redirect('http://localhost:8084/api/v0/login')
+          return res.status(200).redirect('http://localhost:8084/api/v1/login')
         }
         return res.status(401).send({message: 'unauthorised'})
            

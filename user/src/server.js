@@ -3,11 +3,12 @@ import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import passport from 'passport'
 import cors from 'cors'
+import swaggerUi from 'swagger-ui-express'
 
-import Router from './v0/routers'
+import Router from './v1/routers'
 import auth from './config'
-// import passportLocal from './config/passport-local'
-// import passportGoogle from ''
+import * as swaggerDocument from '../docs/swagger.json'
+
 
 const app = express()
 const PORT = process.env.PORT || 8080
@@ -17,12 +18,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(bodyParser())
-app.use('/api/v0', Router.v0Router(express))
+app.use('/api/v1', Router.v1Router(express))
 app.use(cors())
 
 // passport config for local && google
 auth.passportLocal(passport)
 auth.passportGoogle(passport)
+
+// documentation
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 // Connect to MongoDB
 mongoose
@@ -37,6 +41,7 @@ app.get('/', (req, res)=>{
     res.send('welcome to the auth application')
 })
 
+// server is running on PORT 8084 on local machine but 8080 on container
 app.listen(PORT, ()=>{
     console.log(`server running at http://localhost:${PORT}`)
     console.log(`press CTRL +C to stop server`)   

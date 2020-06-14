@@ -3,6 +3,6 @@ export default {
         if(req.isAuthenticated()){
             return next()
         }
-        res.redirect('/api/v0/login')
+        res.redirect('/api/v1/login')
     }
 }

@@ -1,0 +1,193 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "version": "1.0.0",
+        "title": "Auth App",
+        "description": " An API that allows authentication of users",
+        "contact": {
+            "name": "Team-node-2",
+            "email": "nodeteam@gmail.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/license/MIT"
+        }
+    },
+    "servers":[{
+        "url": "http://localhost:8084/api/v1",
+        "description": "This is the dev server for the API"
+    }],
+    "paths": {
+        "/users": {
+            "get": {
+                "description": "obtain information about users from the database",
+                "responses": {
+                    "200": {
+                        "description": "Successful pull of users info",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "_id": {
+                                              "type": "string",
+                                              "example": "iu7afh47aux9gkjjhkjuysta4"
+                                            },
+                                            "name": {
+                                              "type": "string",
+                                              "example": "Mercy Afobite"
+                                            },
+                                            "email": {
+                                              "type": "string",
+                                              "example": "regal@gmail.com"
+                                            },
+                                            "password": {
+                                              "type": "string",
+                                              "example": "ahjd87d5673b"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post":{
+                "description": "Create a new user in the database",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "_id": {
+                                      "type": "string",
+                                      "example": "iu7afh47aux9gkjjhkjuysta4"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "Mercy Afobite"
+                                    },
+                                    "email": {
+                                      "type": "string",
+                                      "example": "regal@gmail.com"
+                                    },
+                                    "password": {
+                                      "type": "string",
+                                      "example": "ahjd87d5673b"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully created a new user"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "description": "login an existing user in",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type":"object",
+                                "properties": {
+                                    "email": {
+                                      "type": "string",
+                                      "example": "regal@gmail.com"
+                                    },
+                                    "password": {
+                                      "type": "string",
+                                      "example": "ahjd87d5673b"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully logged user in"
+                    }
+                }
+            }
+        },
+        "/signup": {
+            "post": {
+                "description": "create a new user",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type":"object",
+                                "properties": {
+                                    "_id": {
+                                      "type": "string",
+                                      "example": "iu7afh47aux9gkjjhkjuysta4"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "Mercy Afobite"
+                                    },
+                                    "email": {
+                                      "type": "string",
+                                      "example": "regal@gmail.com"
+                                    },
+                                    "password": {
+                                      "type": "string",
+                                      "example": "ahjd87d5673b"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully created a user in"
+                    }
+                }
+            }
+        },
+        "/reset": {
+            "post": {
+                "description": "reset password for an existing user",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type":"object",
+                                "properties": {
+                                    
+                                    "email": {
+                                      "type": "string",
+                                      "example": "regal@gmail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Follow instructions to change password in email"
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
